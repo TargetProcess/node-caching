@@ -1,28 +1,29 @@
 {
-  "name": "caching",
-  "description": "Easier caching in node.js",
-  "version": "0.1.4",
-  "author": "Mathias Pettersson <mape@mape.me>",
-  "engines": [
-    "node"
-  ],
-  "directories": {
-    "lib": "./lib"
-  },
-  "main": "./lib/caching",
-  "repository": [
-    {
-      "type": "git",
-      "url": "http://github.com/mape/node-caching"
+    "name": "caching",
+    "description": "In-memory / haredis-based cache with smooth API for node.js",
+    "version": "1.0.0",
+    "author": "Vladimir Petriko inspired by Mathias Pettersson <mape@mape.me>",
+    "engines": [
+        "node"
+    ],
+    "directories": {
+        "lib": "./lib"
+    },
+    "main": "./lib/caching",
+    "repository": [
+        {
+            "type": "git",
+            "url": "http://github.com/Targetprocess/node-caching"
+        }
+    ],
+    "dependencies": {
+        "haredis": ">=0.2.15"
+    },
+    "devDependencies": {
+        "mocha": "1.20.1",
+        "assert": "1.1.1"
+    },
+    "scripts": {
+        "test": "mocha --reporter spec test/"
     }
-  ],
-  "dependencies": {
-    "haredis" : ">=0.2.15"
-  },
-  "devDependencies": {
-    "expresso": "~0.8.1"
-  },
-  "scripts": {
-    "test": "expresso"
-  }
 }

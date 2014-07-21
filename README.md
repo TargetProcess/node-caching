@@ -1,6 +1,7 @@
 # node-caching
 
-Makes working with caching easier.
+In-memory / haredis-based cache with smooth API for node.js
+Inspired by [Mathias Pettersson](https://github.com/mape/node-caching)
 
 ## Installation
 
@@ -14,11 +15,11 @@ Via [npm](http://github.com/isaacs/npm):
 
     var ttl = 60 * 1000; // 1minute;
     cache('twitter-users', ttl, function(passalong) {
-    	getMostActiveTwitterUser(function(err, userName) {
-    		fetchTwitterFollowers(userName, passalong); // passalong replaces function(err, userList) {}
-    	})
+        getMostActiveTwitterUser(function(err, userName) {
+            fetchTwitterFollowers(userName, passalong); // passalong replaces function(err, userList) {}
+        })
     }, function(err, userList) {
-    	console.log(userList);
+        console.log(userList);
     });
 
 ## Code example
@@ -26,17 +27,20 @@ Via [npm](http://github.com/isaacs/npm):
     var cache = new Caching('redis'); /* use 'memory' or 'redis' */
     
     setInterval(function() {
-    	cache('key', 10000 /*ttl in ms*/, function(passalong) {
-    		// This will only run once, all following requests will use cached data.
-    		setTimeout(function() {
-    			passalong(null, 'Cached result');
-    		}, 1000);
-    	}, function(err, results) {
-    		// This callback will be reused each call
-    		console.log(results);
-    	});
+        cache(
+            'key',
+            10000 /*ttl in ms*/,
+            function(passalong) {
+                // This will only run once, all following requests will use cached data.
+                setTimeout(function() {
+                    passalong(null, 'Cached result');
+                }, 1000);
+            },
+            function(err, results) {
+                // This callback will be reused each call
+                console.log(results);
+            });
     }, 100);
-
 
 ## Built in stores
 * Memory
@@ -54,14 +58,14 @@ Time To Live in ms, `60*30*1000`
 Callback that will run if results aren't already in cache store.
 
     function(passalong) {
-    	setTimeout(function() {
-			passalong(null, 'mape', 'frontend developer', 'sweden');
-    	}, 1000);
+        setTimeout(function() {
+            passalong(null, 'mape', 'frontend developer', 'sweden');
+        }, 1000);
     }
 
 ### arguments[3]
 Callback that is called every time the method runs.
 
     function(err, name, position, location) {
-    	console.log(name, position, location);
+        console.log(name, position, location);
     }
