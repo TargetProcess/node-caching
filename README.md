@@ -1,26 +1,13 @@
 # node-caching
 
-In-memory / haredis-based cache with smooth API for node.js
-Inspired by [Mathias Pettersson](https://github.com/mape/node-caching)
+* In-memory / haredis-based cache with smooth API for node.js
+* Inspired by [Mathias Pettersson](https://github.com/mape/node-caching)
 
 ## Installation
 
 Via [npm](http://github.com/isaacs/npm):
 
     $ npm install caching
-
-## Pseudo code example
-    var Caching = require('caching');
-    var cache = new Caching('redis'); /* use 'memory' or 'redis' */
-
-    var ttl = 60 * 1000; // 1minute;
-    cache('twitter-users', ttl, function(passalong) {
-        getMostActiveTwitterUser(function(err, userName) {
-            fetchTwitterFollowers(userName, passalong); // passalong replaces function(err, userList) {}
-        })
-    }, function(err, userList) {
-        console.log(userList);
-    });
 
 ## Code example
     var Caching = require('caching');
