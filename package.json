@@ -10,7 +10,7 @@
     "lib": "./lib"
   },
   "main": "./lib/caching",
-  "repositories": [
+  "repository": [
     {
       "type": "git",
       "url": "http://github.com/mape/node-caching"
